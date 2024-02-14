@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import csv
 import re
 import numpy as np
+import json
 
 class IngestDoFn(beam.DoFn):
     # Definindo o user-agent que você deseja usar
@@ -110,70 +111,55 @@ class IngestDoFn(beam.DoFn):
                 except Exception as e:
                     print(f"Ocorreu um erro: {e}")
 
-p1 = beam.Pipeline()
 
-#tempo_atrasos = (
-#    p1
-#    | "Executando a função Ingest" >> beam.Create([None])  # Passing a dummy element
-#    | "Processamento dos dados" >> beam.ParDo(IngestDoFn())
-#) 
+
+
+# Função para converter uma linha para JSON
+def to_json(row):
+    # Definindo os nomes dos campos
+    fields = ['Tipo', 'Endereço', 'Bairro', 'Numero', 'Cidade', 'Preço', 'Taxa', 'Área_m2', 'Quartos', 'Banheiros', 'Garagens']
+    
+    # Criando um dicionário para representar a linha
+    json_row = {fields[i]: row[i] for i in range(len(fields))}
+    
+    # Convertendo o dicionário para JSON, garantindo que os caracteres acentuados sejam tratados corretamente
+    return json.dumps(json_row, ensure_ascii=False)
+
+# Criando o pipeline para a ingestão de dados
+p_ingest = beam.Pipeline()
+
+data_ingest = (
+    p_ingest
+    | "Executando a função Ingest" >> beam.Create([None])
+    | "Processamento dos dados" >> beam.ParDo(IngestDoFn())
+)
+
+result_ingest = p_ingest.run()
+
+# Esperando a conclusão da execução da ingestão de dados antes de prosseguir
+result_ingest.wait_until_finish()
+
+# Criando o pipeline para a transformação de dados
+p_transform = beam.Pipeline()
 
 data_transform = (
-    p1
+    p_transform
     | "Leitura dos dados" >> beam.io.ReadFromText('data.csv', skip_header_lines=1)
     | "Split Row" >> beam.Map(lambda row: row.split(',')) 
     | "Eliminando 'R$ ' da string" >> beam.Map(lambda cols: [col.replace('R$ ', '').replace('Cond.: ', '').replace(' Quartos', '').replace(' Quarto', '').replace(' Banheiros', '').replace(' Banheiro', '').replace(' Garagens', '').replace(' Garagem', '') for col in cols])
-    #| "Salvando as taxas em uma nova coluna 6" >> beam.Map(lambda cols: [cols[i] for i in range(len(cols))] + [cols[5].split()[1]] if len(cols[5].split()) > 1 else [cols[i] for i in range(len(cols))] + [np.nan])
-    | "Salvando as taxas em uma nova coluna" >> beam.Map(lambda cols: cols[:5] + [cols[5].split()[1] if len(cols[5].split()) > 1 else np.nan] + cols[5:])
-    | "Eliminando taxa da coluna 6" >> beam.Map(lambda cols: [cols[i] if i != 6 else cols[6].split()[0] for i in range(len(cols))])
-    | "Tratando os preços" >> beam.Map(lambda cols: [col[:-3] if index == 6 and col else col for index, col in enumerate(cols)])
-    | "Elinando pontos em preços" >> beam.Map(lambda cols: [col.replace('.', '') if index == 6 else col for index, col in enumerate(cols)])
-    | "Elinando pontos em taxas" >> beam.Map(lambda cols: [str(col).replace('.', '') if index == 5 else col for index, col in enumerate(cols)])
-    #| "Processamento da coluna 3" >> beam.Map(lambda cols: [cols[0], cols[1], cols[2].split()[0], ' '.join(cols[2].split()[1:])] if len(cols[2].split()) > 2 else cols)
-    #| "Substituindo ponto na última coluna" >> beam.Map(lambda cols: [str(col).replace('.', '') if index == len(cols) - 1 else col for index, col in enumerate(cols)])
-    | "Print Transformed Rows" >> beam.Map(print)  
+#   | "Salvando as taxas em uma nova coluna 6" >> beam.Map(lambda cols: [cols[i] for i in range(len(cols))] + [cols[5].split()[1]] if len(cols[5].split()) > 1 else [cols[i] for i in range(len(cols))] + [np.nan])
+    | "Salvando as taxas em uma nova coluna" >> beam.Map(lambda cols: cols[:6] + [cols[5].split()[1] if len(cols[5].split()) > 1 else np.nan] + cols[6:])
+    | "Eliminando taxa da coluna 6" >> beam.Map(lambda cols: [cols[i] if i != 5 else cols[5].split()[0] for i in range(len(cols))])
+    | "Tratando os preços" >> beam.Map(lambda cols: [col[:-3] if index == 5 and col else col for index, col in enumerate(cols)])
+    | "Elinando pontos em preços" >> beam.Map(lambda cols: [col.replace('.', '') if index == 5 else col for index, col in enumerate(cols)])
+    | "Elinando pontos em taxas" >> beam.Map(lambda cols: [str(col).replace('.', '') if index == 6 else col for index, col in enumerate(cols)])
+    | "Salvando número em uma nova coluna" >> beam.Map(lambda cols: cols[:4] + [cols[3].split()[0] if len(cols[3].split()) > 1 else np.nan] + cols[4:])
+    | "Eliminando númeoro da coluna 4" >> beam.Map(lambda cols: [cols[i] if i != 3 else ' '.join(cols[3].split()[1:]) if len(cols) >= 2 and len(cols[3].split()) > 1 else cols[i] for i in range(len(cols))])
+    | "Eliminando coluna 2" >> beam.Map(lambda cols: [cols[i] for i in range(len(cols)) if i != 2])
+    | "Converting to JSON" >> beam.Map(to_json)
+    | "Print Transformed Rows" >> beam.io.WriteToText('data/data_tratado.json')
+    #| "Print Transformed Rows" >> beam.Map(print) 
 )
 
-    #| "Leitura dos dados" >> beam.io.ReadFromText('data.csv', skip_header_lines=1)
-    #| "Split Row" >> beam.Map(lambda row: row.split(',')) 
-    #
-    #| "Salvando as taxas em uma nova coluna" >> beam.Map(lambda cols: cols[:5] + [cols[5].split()[1] if len(cols[5].split()) > 1 else np.nan] + cols[5:])
+p_transform.run()
 
-
-#    df = pd.read_csv('/home/michel/Documentos/Projetos_Portifolio/dataflow_apacheBeam/data.csv')
-#
-#    # Aplicar a lógica usando lambda e apply
-#    df['Número'], df['Bairro'] = zip(*df.apply(lambda row: (row['Bairro'].split()[0], ' '.join(row['Bairro'].split()[1:])) if isinstance(row['Bairro'], str) and len(row['Bairro'].split()) > 1 else (row['Número'], row['Bairro']), axis=1))
-#
-#    # Converter 'Número' para int64
-#    df['Número'] = pd.to_numeric(df['Número'], errors='coerce').astype('Int64')
-#
-#    df.insert(6, 'Taxa Cond', df.apply(lambda row: row['Preço'].split()[4] if isinstance(row['Preço'], str) and len(row['Preço'].split()) > 3 else None, axis=1))
-#    df['Preço'] = df.apply(lambda row: row['Preço'].split()[1] if isinstance(row['Preço'], str) and len(row['Preço'].split()) > 2 else row['Preço'], axis=1)
-#
-#    df['Preço'] = df['Preço'].str.replace('R$ ', '')
-#    df['Preço'] = df['Preço'].apply(lambda x: x[:-4] if x else '0')
-#    df['Preço'] = df['Preço'].str.replace('.', '')
-#
-#    df['Preço'] = df['Preço'].apply(lambda x: float(x.replace('R$', '').replace('.', '').replace(',', '.')) if str(x).replace('.', '').isdigit() else np.nan)
-#
-#    df['Taxa Cond'] = df['Taxa Cond'].str.replace('.', '')
-#    df['Taxa Cond'] = df['Taxa Cond'].replace('Cond.: R\$ ', '', regex=True).astype(float)
-#    df.insert(7, 'Total Mensal', df.apply(lambda row: row['Preço'] + row['Taxa Cond'], axis=1))
-#
-#    df['Quartos'] = df['Quartos'].astype('str').apply(lambda x: x.split()[0])
-#    df['Banheiros'] = df['Banheiros'].astype('str').apply(lambda x: x.split()[0])
-#    df['Garagens'] = df['Garagens'].astype('str').apply(lambda x: x.split()[0])
-#
-#    df['Quartos'] = df['Quartos'].apply(lambda x: int(x) if str(x).isnumeric() else 0)
-#    df['Banheiros'] = df['Banheiros'].apply(lambda x: int(x) if str(x).isnumeric() else 0)
-#    df['Garagens'] = df['Garagens'].apply(lambda x: int(x) if str(x).isnumeric() else 0)
-#
-#    df['Área'] = df['Área'].apply(lambda x: float(x) if str(x).isnumeric() else 0)
-#    df['Quartos'] = df['Quartos'].astype('Int64')
-#    df['Banheiros'] = df['Banheiros'].astype('Int64')
-#    df['Garagens'] = df['Garagens'].astype('Int64')
-#
-#    df.to_csv('data/data_transform.csv')
-
-p1.run()
