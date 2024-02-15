@@ -31,7 +31,7 @@ class IngestDoFn(beam.DoFn):
             return rua, numero, bairro, cidade
 
         # Caminho do arquivo CSV onde os dados serão salvos
-        csv_file = 'data.csv'
+        csv_file = 'data/data.csv'
 
         # Abrir o arquivo CSV em modo de escrita
         with open(csv_file, "w", newline='', encoding='utf-8') as file:
@@ -139,12 +139,13 @@ result_ingest = p_ingest.run()
 # Esperando a conclusão da execução da ingestão de dados antes de prosseguir
 result_ingest.wait_until_finish()
 
+
 # Criando o pipeline para a transformação de dados
 p_transform = beam.Pipeline()
 
 data_transform = (
     p_transform
-    | "Leitura dos dados" >> beam.io.ReadFromText('data.csv', skip_header_lines=1)
+    | "Leitura dos dados" >> beam.io.ReadFromText('data/data.csv', skip_header_lines=1)
     | "Split Row" >> beam.Map(lambda row: row.split(',')) 
     | "Eliminando 'R$ ' da string" >> beam.Map(lambda cols: [col.replace('R$ ', '').replace('Cond.: ', '').replace(' Quartos', '').replace(' Quarto', '').replace(' Banheiros', '').replace(' Banheiro', '').replace(' Garagens', '').replace(' Garagem', '') for col in cols])
 #   | "Salvando as taxas em uma nova coluna 6" >> beam.Map(lambda cols: [cols[i] for i in range(len(cols))] + [cols[5].split()[1]] if len(cols[5].split()) > 1 else [cols[i] for i in range(len(cols))] + [np.nan])
@@ -158,7 +159,7 @@ data_transform = (
     | "Eliminando coluna 2" >> beam.Map(lambda cols: [cols[i] for i in range(len(cols)) if i != 2])
     | "Converting to JSON" >> beam.Map(to_json)
     | "Print Transformed Rows" >> beam.io.WriteToText('data/data_tratado.json')
-    #| "Print Transformed Rows" >> beam.Map(print) 
+#   | "Print Transformed Rows" >> beam.Map(print) 
 )
 
 p_transform.run()
