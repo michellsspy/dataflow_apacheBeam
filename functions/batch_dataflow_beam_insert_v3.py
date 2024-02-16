@@ -11,12 +11,13 @@ from apache_beam.options.pipeline_options import PipelineOptions
 
 # Variáveis globais
 bronze_folder = 'data-bronze'
-silver_folder = 'analise-imobiliario-bc/data-silver'
+silver_folder = 'data-silver'
 csv_file = 'data_scraper_imobiliario.csv'
 bucket_name = 'analise-imobiliario-bc'
 arquive_name_bronze = 'data_scraper_imobiliario.csv'
 arquive_name_silver = 'data_imobiliario_tratado.json'
 
+# Opções de interação do projeto
 pipeline_options = {
     'project': 'using-dataflow-414211',
     'runner': 'DataflowRunner',
@@ -27,10 +28,11 @@ pipeline_options = {
 }
 pipeline_options = PipelineOptions.from_dictionary(pipeline_options)
 
+# Configuração da Service Acount
 serviceAcount = r'/home/michel/Documentos/Projetos_Portifolio/keys/using-dataflow-414211-bb9e50f7913d.json'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = serviceAcount
 
-
+# Classe responsável pela ingestão
 class IngestDoFn(beam.DoFn):
     # Definindo o user-agent que você deseja usar
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -172,6 +174,7 @@ def to_json(row):
 p_ingest = beam.Pipeline()
 #p_ingest = beam.Pipeline(options=pipeline_options)
 
+# Dag da ingestão
 data_ingest = (
     p_ingest
     | "Executando a função Ingest" >> beam.Create([None])
@@ -179,6 +182,7 @@ data_ingest = (
 )
 
 result_ingest = p_ingest.run()
+
 
 # Esperando a conclusão da execução da ingestão de dados antes de prosseguir
 result_ingest.wait_until_finish()
@@ -188,6 +192,8 @@ result_ingest.wait_until_finish()
 p_transform = beam.Pipeline()
 #p_transform = beam.Pipeline(options=pipeline_options)
 
+
+# Dag das transformações
 data_transform = (
     p_transform
     | "Leitura dos dados" >> beam.io.ReadFromText(f'gs://{bucket_name}/{bronze_folder}/{arquive_name_bronze}', skip_header_lines=1)
