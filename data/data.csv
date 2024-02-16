@@ -2,7 +2,6 @@ Título,Nome da Rua,Número,Bairro,Cidade,Preço,Área,Quartos,Banheiros,Garagen
 Residencial bellas,Rua João Francisco dos Santos  Pioneiros,,,Balneário Camboriú,R$ 2.490.000,137,3  Quartos,4  Banheiros,2  Garagens
 Apartamento mobiliado,Rua Egidio Alfredo Crispim  Pioneiros,,,Balneário Camboriú,R$ 1.690.000 Cond.: R$ 520,115,3  Quartos,2  Banheiros,4  Garagens
 Apartamento em,Avenida Atlântica,,4520  Centro,Balneário Camboriú,R$ 3.300.000 Cond.: R$ 1.000,140,3  Quartos,4  Banheiros,1  Garagem
-Residencial majestic,Rua 4450,,64  Centro,Balneário Camboriú,R$ 6.450.000,257,3  Quartos,4  Banheiros,4  Garagens
 Apartamento 4,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 2.100.000 Cond.: R$ 1.000,160,4  Quartos,5  Banheiros,1  Garagem
 Apartamento 3,Avenida Brasil,,30  Centro,Balneário Camboriú,R$ 2.990.000 Cond.: R$ 2.129,122,3  Quartos,5  Banheiros,3  Garagens
 Porto di,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 550.000,,,,
@@ -23,12 +22,14 @@ Casa a,Rua Ercelina Vieira,,167  Praia do Estaleiro,Balneário Camboriú,R$ 20.0
 Apartamento 4,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 3.700.000,143,4  Quartos,6  Banheiros,3  Garagens
 2 dormitórios,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 980.000 Cond.: R$ 494,62,2  Quartos,2  Banheiros,1  Garagem
 Casa,Endereço não disponível  Praia do Estaleiro,,,Balneário Camboriú,R$ 13.000.000 Cond.: R$ 10,550,4  Quartos,5  Banheiros,5  Garagens
+Apartamento,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 1.690.000 Cond.: R$ 594,102,3  Quartos,2  Banheiros,2  Garagens
 "Riomaggiore, barra",Rua: Bruno Silva,,51  Barra Norte,Balneário Camboriú,R$ 3.551.500,,,,
 Ponto comercial,Endereço não disponível  Centro,,,Balneário Camboriú,R$ Confira,,,,
 Casa comercial,Rua 3050,,45  Centro,Balneário Camboriú,R$ 3.500.000,,,,
 Casa mobiliada,Endereço não disponível  Estados,,,Balneário Camboriú,R$ 3.500.000,,,,
 Apartamento triplex,Avenida Atlântica,,2700  Centro,Balneário Camboriú,R$ 13.999.999 Cond.: R$ 2.900,714,5  Quartos,6  Banheiros,3  Garagens
 Apartamento,Rua 1910,,91  Centro,Balneário Camboriú,R$ 5.700.000,,,,
+Apartamento a,Rua 101,,120  Centro,Balneário Camboriú,R$ 1.790.000 Cond.: R$ 850,182,3  Quartos,2  Banheiros,2  Garagens
 Apartamento,Rua Isidoro Caetano,,--  Pioneiros,Balneário Camboriú,R$ 2.450.000 Cond.: R$ 1.200,122,3  Quartos,3  Banheiros,3  Garagens
 Apartamento no,Rua Francisco Manoel de Souza,,82  Pioneiros,Balneário Camboriú,R$ 2.500.000 Cond.: R$ 900,136,4  Quartos,4  Banheiros,2  Garagens
 "Oportunidade, excelente",Avenida Brasil,,3020  Centro,Balneário Camboriú,R$ 850.000 Cond.: R$ 800,86,2  Quartos,1  Banheiro,1  Garagem
@@ -142,6 +143,7 @@ Edifício inside,Endereço não disponível  Ariribá,,,Balneário Camboriú,R$ 
 Apartamento novo,Rua 1950,,605  Centro,Balneário Camboriú,R$ 6.800.000 Cond.: R$ 1.130,257,4  Quartos,5  Banheiros,4  Garagens
 "Camboriú, ed.",Avenida Santo Amaro,,1810  São Francisco de Assis,Balneário Camboriú,R$ 648.000 Cond.: R$ 0,75,2  Quartos,3  Banheiros,3  Garagens
 Requinte e,Rua 2070,,11  Centro,Balneário Camboriú,R$ 4.080.000 Cond.: R$ 1.800,167,4  Quartos,5  Banheiros,3  Garagens
+Ampla sala,Rua Venezuela,,20  Nações,Balneário Camboriú,R$ 1.099.000 Cond.: R$ 600,,,,
 Casa em,Rua Hercelina M. Vieira,,--  Praia do Estaleiro,Balneário Camboriú,R$ 5.480.000,298,4  Quartos,6  Banheiros,2  Garagens
 Comercial para,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 1.900.000,,,,
 Apartamento em,Rua João F Dos Santos,20,20  Pioneiros,Balneário Camboriú,R$ 2.300.000,127,3  Quartos,2  Banheiros,2  Garagens
@@ -185,6 +187,7 @@ Apartamentos,Endereço não disponível  Estados,,,Balneário Camboriú,R$ 2.070
 Próximo ao,Endereço não disponível  Jardim Parque Bandeirantes,,,Balneário Camboriú,R$ 450.000,75,2  Quartos,1  Banheiro,1  Garagem
 Apartamento na,Rua 1440,,100  Centro,Balneário Camboriú,R$ 2.200.000,120,3  Quartos,4  Banheiros,3  Garagens
 Santé boutique,Rua João Francisco dos Santos,,100  Pioneiros,Balneário Camboriú,R$ 5.880.000 Cond.: R$ 1.800,160,4  Quartos,5  Banheiros,3  Garagens
+Apartamento no,Avenida Atlântica,,5770  Centro,Balneário Camboriú,R$ 9.600.000,183,4  Quartos,5  Banheiros,3  Garagens
 Apartamento barato,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 1.099.000 Cond.: R$ 500,98,3  Quartos,3  Banheiros,1  Garagem
 Apartamento,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 2.690.000,131,2  Quartos,3  Banheiros,3  Garagens
 Apartamento,Avenida Brasil,,240  Centro,Balneário Camboriú,R$ 6.500.000,146,4  Quartos,4  Banheiros,3  Garagens
@@ -195,6 +198,7 @@ Cobertura,Rua 3618,,967  Centro,Balneário Camboriú,R$ 9.000.000 Cond.: R$ 1.00
 Apartamento para,Rua 3000,,505  Centro,Balneário Camboriú,R$ 1.800.000,105,3  Quartos,1  Banheiro,2  Garagens
 Apartamento 1,Rua México,,151  Nações,Balneário Camboriú,R$ 560.000 Cond.: R$ 350,,,,
 Apartamento cyano,Rua 901  Centro,,,Balneário Camboriú,R$ 5.476.428,190,4  Quartos,5  Banheiros,3  Garagens
+Apartamento,Jullieta Lins,,271  Pioneiros,Balneário Camboriú,R$ 4.100.000,151,4  Quartos,5  Banheiros,2  Garagens
 Ap 4,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 2.100.000,143,4  Quartos,5  Banheiros,2  Garagens
 Apartamento,Rua 3300,,1  Centro,Balneário Camboriú,R$ 2.230.000,128,3  Quartos,3  Banheiros,3  Garagens
 Maravilhoso apto,Endereço não disponível  Nações,,,Balneário Camboriú,R$ 700.000,80,2  Quartos,2  Banheiros,1  Garagem
@@ -230,7 +234,6 @@ Apartamento,10a R 2480,,93  Centro,Balneário Camboriú,R$ 5.200.000,,,,
 Apartamento,Avenida Atlântica  Centro,,,Balneário Camboriú,R$ 10.966.000,200,4  Quartos,5  Banheiros,4  Garagens
 Apartamento,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 6.690.000 Cond.: R$ 2.000,399,3  Quartos,2  Banheiros,4  Garagens
 Apartamento,Avenida Atlântica  Frente do Mar,,,Balneário Camboriú,R$ 5.500.000 Cond.: R$ 3.472,157,3  Quartos,4  Banheiros,2  Garagens
-Apartamento frente,Avenida Atlântica,,4950  Centro,Balneário Camboriú,R$ 13.500.000,196,4  Quartos,5  Banheiros,3  Garagens
 Apartamento nações,Endereço não disponível  Nações,,,Balneário Camboriú,R$ 620.000 Cond.: R$ 200,80,2  Quartos,1  Banheiro,1  Garagem
 Lindo apartamento,Avenida Brasil,,2700  Centro,Balneário Camboriú,R$ 3.274.152 Cond.: R$ 842,90,3  Quartos,2  Banheiros,2  Garagens
 Apartamento,Rua 1131,,285  Centro,Balneário Camboriú,R$ 3.000.000,159,4  Quartos,5  Banheiros,4  Garagens
@@ -260,15 +263,15 @@ Apartamento infinity,Rua Julieta Lins,,114  Barra Norte,Balneário Camboriú,R$ 
 Apartamento frente,Avenida Atlântica  Centro,,,Balneário Camboriú,R$ 2.000.000,,,,
 Apartamento,Endereço não disponível  Centro,,,Balneário Camboriú,R$ 1.890.000,117,3  Quartos,4  Banheiros,3  Garagens
 Apartamento,Endereço não disponível  Nações,,,Balneário Camboriú,R$ 750.000 Cond.: R$ 200,,,,
-Vitra -,Avenida Brasil,,3358  Centro,Balneário Camboriú,R$ 5.200.000,171,4  Quartos,4  Banheiros,3  Garagens
 Casa,Rua Síria,,581  Nações,Balneário Camboriú,R$ 1.450.000,,,,
+Vitra -,Avenida Brasil,,3358  Centro,Balneário Camboriú,R$ 5.200.000,171,4  Quartos,4  Banheiros,3  Garagens
 Apartamento duplex,Rua Bruno Silva,,135  Pioneiros,Balneário Camboriú,R$ 3.170.000,300,4  Quartos,2  Banheiros,3  Garagens
 Melhor linha,Rua 1542,,64  Centro,Balneário Camboriú,R$ 1.900.000,133,3  Quartos,2  Banheiros,2  Garagens
 Ap. vista,Rua 1926,,236  Centro,Balneário Camboriú,R$ 3.200.000 Cond.: R$ 800,135,3  Quartos,2  Banheiros,2  Garagens
 Apartamento,Rua 2970,,70  Centro,Balneário Camboriú,R$ 2.500.000,249,3  Quartos,4  Banheiros,4  Garagens
 Apartamento 3,Avenida Brasil,,3551  Centro,Balneário Camboriú,R$ 4.080.000 Cond.: R$ 1.554,66,3  Quartos,5  Banheiros,4  Garagens
-Duas áreas,Rua Daniel Anastácio Fraga,,272  São Judas Tadeu,Balneário Camboriú,R$ 2.500.000,,,,
 Apartamento á,Avenida Atlântica  Frente do Mar,,,Balneário Camboriú,R$ 2.700.000,100,3  Quartos,2  Banheiros,1  Garagem
+Duas áreas,Rua Daniel Anastácio Fraga,,272  São Judas Tadeu,Balneário Camboriú,R$ 2.500.000,,,,
 Apto bem,Rua Paraguai,,1010  Centro,Balneário Camboriú,R$ 688.000 Cond.: R$ 550,,,,
 Casa em,Rua Julieta Lins  Pioneiros,,,Balneário Camboriú,R$ 12.000.000,283,2  Quartos,5  Banheiros,3  Garagens
 Apartamento,Avenida Brasil,,2800  Centro,Balneário Camboriú,R$ 4.600.000 Cond.: R$ 1.983,161,4  Quartos,5  Banheiros,3  Garagens
